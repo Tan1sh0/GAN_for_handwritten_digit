@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAPTCHA reading test result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="card">
+    <p class="eyebrow">Handwritten digit test</p>
+    <h1>{{ "Well done!" if correct else "Challenge complete" }}</h1>
+    <p class="feedback {{ 'success' if correct else 'error' }}" role="status">{{ message }}</p>
+    <a class="button-link" href="{{ url_for('index') }}">Try another challenge</a>
+  </main>
+</body>
+</html>

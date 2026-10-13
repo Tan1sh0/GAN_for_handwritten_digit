@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAPTCHA reading test</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="card">
+    <p class="eyebrow">Handwritten digit test</p>
+    <h1>What digits do you see?</h1>
+    <p class="intro">Enter the four digits shown below.</p>
+    <img class="captcha" src="{{ image_url }}" alt="A CAPTCHA-style image containing four digits">
+    {% if error %}
+    <p class="feedback error" role="alert">{{ error }}</p>
+    {% endif %}
+    <form action="{{ url_for('check_answer') }}" method="post">
+      <label for="answer">Your answer</label>
+      <input id="answer" name="answer" type="text" inputmode="numeric"
+             autocomplete="off" pattern="[0-9]{4}" maxlength="4" required
+             aria-describedby="answer-help">
+      <p id="answer-help" class="hint">Use four digits, including any leading zero.</p>
+      <button type="submit">Check answer</button>
+    </form>
+    <a class="secondary-link" href="{{ url_for('index') }}">Get a different challenge</a>
+  </main>
+</body>
+</html>
